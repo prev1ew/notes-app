@@ -1,7 +1,7 @@
 import Note from "../models/note.js"
 
 const db = [
-    new Note("TEEEST", "Task"),
+    new Note("06-06-2022JJJJJ6-6-1093BBBB2306333317/03/2029", "Task"),
     new Note("TeeeeeeeeeeEEEST", "Idea"),
     new Note("Complete task 1", "Task"),
     new Note("Cola cheaper than beer!", "Random Thought"),

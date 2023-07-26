@@ -1,4 +1,5 @@
 import db from "./db.js";
+import { fillMentionDatesFromDescription as fillDates } from "./helpers/dbHelper.js";
 
 
 const getRecord = (recordId) => {
@@ -10,26 +11,34 @@ const addRecord = (newRecord) => {
         return false;
     }
 
-    db.push(newRecord)
-    return true;
+    db.push(fillDates(newRecord))
+    return newRecord;
 }
 
-const updateRecord = (updatedRecord) => {
-    const { id, description, category, isArchived } = updatedRecord;
-    const currentRecord = getRecord(id)
+const updateRecord = (dataToUpdate, recordId) => {
+    const { description, category, isArchived } = dataToUpdate;
+    const currentRecord = getRecord(recordId)
     if (!currentRecord) {
         return false;
     }
 
-    currentRecord.description = description;
-    currentRecord.category = category;
-    currentRecord.isArchived = isArchived;
+    if (description !== undefined) {
+        currentRecord.description = description;
+    }
 
-    return true;
+    if (category !== undefined) {
+        currentRecord.category = category;
+    }
+
+    if (isArchived !== undefined) {
+        currentRecord.isArchived = isArchived;
+    }
+
+    return currentRecord;
 }
 
 const deleteRecord = (recordId) => {
-    const objToDelete = db.find((el) => el.id === recordId)
+    const objToDelete = getRecord(recordId)
     if (!objToDelete) {
         return false;
     }
