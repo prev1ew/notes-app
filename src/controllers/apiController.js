@@ -1,8 +1,20 @@
 import asyncHandler from "express-async-handler"
 
-const getNotes = asyncHandler(async (req, res) => {
-    res.render('static/index.html');
+const createNote = asyncHandler(async (req, res) => {
+    res.send("createNote")
 })
 
-export default { getNotes }
-export { getNotes }
+const getNote = asyncHandler(async (req, res) => {
+    res.send(`req.params.id: ${req.params.id}\\ getNote`)
+})
+
+const updateNote = asyncHandler(async (req, res) => {
+    res.send(`req.params.id: ${req.params.id}\\ updateNote`)
+})
+
+const deleteNote = asyncHandler(async (req, res) => {
+    res.send(`req.params.id: ${req.params.id}\\ deleteNote`)
+})
+
+export default { createNote, getNote, updateNote, deleteNote }
+export { createNote, getNote, updateNote, deleteNote }

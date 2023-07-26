@@ -1,11 +1,11 @@
 import express from 'express';
-import { getNotes } from "../controllers/apiController.js"
+import { createNote, deleteNote, getNote, updateNote } from "../controllers/apiController.js"
 
 const currRouter = express.Router()
 
-currRouter.get("", getNotes)
-// .post("", createItem)
-// .put("", updateItem)
-// .delete("", deleteItem)
+currRouter.post("/create", createNote)
+    .get("/:id", getNote)
+    .put("/:id", updateNote)
+    .delete("/:id", deleteNote)
 
 export default currRouter;
