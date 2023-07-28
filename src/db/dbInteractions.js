@@ -16,10 +16,14 @@ const addRecord = (newRecord) => {
 }
 
 const updateRecord = (dataToUpdate, recordId) => {
-    const { description, category, isArchived } = dataToUpdate;
+    const { title, description, category, isArchived } = dataToUpdate;
     const currentRecord = getRecord(recordId)
     if (!currentRecord) {
         return false;
+    }
+
+    if (title !== undefined) {
+        currentRecord.title = title;
     }
 
     if (description !== undefined) {

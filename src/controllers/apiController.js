@@ -6,11 +6,11 @@ import CustomError from "../models/customError.js";
 
 
 const createNote = asyncHandler(async (req, res) => {
-    const { description, category, mentionDates, isArchived } = req.body;
+    const { title, description, category, mentionDates, isArchived } = req.body;
     if (!description || !category) {
         throw new CustomError("Description and category are mandatory fields!", 400)
     }
-    const result = dbInteractions.addRecord(new Note(description, category, mentionDates, isArchived))
+    const result = dbInteractions.addRecord(new Note(title, description, category, mentionDates, isArchived))
 
     if (!result) {
         throw new CustomError("Invalid data", 400)

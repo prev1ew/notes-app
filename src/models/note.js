@@ -3,14 +3,16 @@ import { getDatesFromString } from '../db/helpers/dbHelper.js';
 
 class Note {
     id;
+    title;
     description;
     createdAt;
     category;
     isArchived;
     mentionDates;
-    constructor(description, category, mentionDates = "", isArchived = false,) {
+    constructor(title, description, category, mentionDates = "", isArchived = false,) {
         return {
             id: uuid(),
+            title,
             description,
             createdAt: new Date(),
             category,
